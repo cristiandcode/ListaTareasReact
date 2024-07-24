@@ -12,13 +12,20 @@ const FormularioTareas = () => {
     //limpiar el input
     setNombreTarea('');
   }
+
+  const borrarTarea = (nombre) =>{
+    const tareasActualizadas = tareas.filter((itemTarea) => itemTarea !== nombre) 
+    //Actualizar el state tareas. Siempre usando el SET
+    setTareas(tareasActualizadas);
+  }
+
   return (
     <section>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3 d-flex" controlId="tarea">
           <Form.Control
             type="text"
-            placeholder="Ej: tarea 1"
+            placeholder="Ej: Añade tu nueva tarea"
             minLength={3}
             maxLength={50}
           onChange= {(e)=> setNombreTarea(e.target.value)}
@@ -27,7 +34,7 @@ const FormularioTareas = () => {
           <Button variant="primary" className="mx-2" type="submit">Enviar</Button>
         </Form.Group>
       </Form>
-      <Listatareas tareasProps={tareas} ></Listatareas>
+      <Listatareas tareasProps={tareas} borrarActividadProps={borrarTarea} ></Listatareas>
     </section>
   );
 };
