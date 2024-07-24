@@ -27,7 +27,7 @@ const FormularioTareas = () => {
           <Button variant="primary" className="mx-2" type="submit">Enviar</Button>
         </Form.Group>
       </Form>
-      <Listatareas ></Listatareas>
+      <Listatareas tareasProps={tareas} ></Listatareas>
     </section>
   );
 };
