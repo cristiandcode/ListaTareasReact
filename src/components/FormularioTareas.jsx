@@ -1,10 +1,19 @@
 import { Button, Form } from "react-bootstrap";
 import Listatareas from "./Listatareas";
-import { useState } from "react";
+import { useEffect ,useState } from "react";
 
 const FormularioTareas = () => {
   const [nombreTarea, setNombreTarea ] = useState('')
-  const [tareas, setTareas] = useState([])
+  const [tareas, setTareas] = useState( JSON.parse(localStorage.getItem('listaTareasKey')) || [] );
+
+
+
+  //Aqui agrego el ciclo de vida de un componente useEffect
+  useEffect(()=>{
+    //aqui agregar el codigo que quiero ejecutar en el montaje y actualizacion del componente
+    console.log('Estoy dentro del useEffect')
+    localStorage.setItem('listaTareasKey', JSON.stringify(tareas))
+  }, [tareas])
 
   const handleSubmit = (e)=> {
     e.preventDefault();
